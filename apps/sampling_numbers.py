@@ -10,7 +10,7 @@ from dash.dependencies import Input, Output
 from app import app
 
 
-CSV = join(dirname(dirname(abspath(__file__))), 'assets', 'pangea_db_sharing_extract.csv')
+CSV = join(dirname(dirname(abspath(__file__))), 'assets', 'pangea_dashboard_demo.csv')
 
 df = pd.read_csv(CSV)
 df = df[['geo_country', 'sex', 'main_cohort_id']]
