@@ -1,3 +1,5 @@
+from os.path import join, dirname, abspath
+
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
@@ -7,7 +9,10 @@ from dash.dependencies import Input, Output
 
 from app import app
 
-df = pd.read_csv('/Users/laurat/Desktop/2020-05-05_pangea_db_sharing_extract.csv')
+
+CSV = join(dirname(dirname(abspath(__file__))), 'assets', 'pangea_db_sharing_extract.csv')
+
+df = pd.read_csv(CSV)
 df = df[['geo_country', 'sex', 'main_cohort_id']]
 df = df.groupby(['geo_country', 'sex', 'main_cohort_id']).size().reset_index()
 df.rename(columns={0: 'count'}, inplace=True)

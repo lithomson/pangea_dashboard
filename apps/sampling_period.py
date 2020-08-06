@@ -1,11 +1,14 @@
 from datetime import datetime
+from os.path import join, dirname, abspath
 
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 import plotly.express as px
 
-df = pd.read_csv('/Users/laurat/Desktop/2020-05-05_pangea_db_sharing_extract.csv')
+CSV = join(dirname(dirname(abspath(__file__))), 'assets', 'pangea_db_sharing_extract.csv')
+
+df = pd.read_csv(CSV)
 df = df[['geo_country', 'visit_dt']]
 df['visit_dt'] = df['visit_dt'].apply(lambda x: datetime.strptime(x, '%Y-%m-%d').date())
 df['visit_year'] = df['visit_dt'].apply(lambda x: x.year)
