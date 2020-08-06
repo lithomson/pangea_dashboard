@@ -4,7 +4,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from app import app
-from apps import sampling_numbers, data_distributions, sampling_period
+from apps import sampling_numbers, data_distributions, sampling_period, about
 
 # the style arguments for the sidebar. We use position:fixed and a fixed width
 SIDEBAR_STYLE = {
@@ -32,7 +32,7 @@ CONTENT_STYLE = {
 sidebar = html.Div(
     [
         html.Div([html.Img(src=app.get_asset_url('pangea-hiv-logo.png'), style=LOGO_STYLE)]),
-        html.H2("Bioinformatics Dashboard", className="display-5"),
+        html.H2("Dashboard Demo", className="display-5"),
         html.Hr(),
         html.P("Navigation", className="lead"),
         dbc.Nav(
@@ -41,6 +41,7 @@ sidebar = html.Div(
                 dbc.NavLink("Sampling Numbers", href="/sampling-numbers", id="sampling-numbers-link"),
                 dbc.NavLink("Data Distributions", href="/data-distributions", id="data-distributions-link"),
                 dbc.NavLink("Sampling Period", href="/sampling-period", id="sampling-period-link"),
+                dbc.NavLink("About", href="/about", id="about-link"),
             ],
             vertical=True,
             pills=True,
@@ -60,7 +61,7 @@ app.layout = html.Div([
 ])
 
 index_page = html.Div([
-    html.H5('Welcome to the PANGEA Bioinformatics Dashboard!'),
+    html.H5('Welcome to the PANGEA Dashboard Demo!'),
     html.Br(),
     html.P('I hope you are having a lovely day :)')
 ])
@@ -77,6 +78,8 @@ def display_page(pathname):
         return data_distributions.layout
     elif pathname == "/sampling-period":
         return sampling_period.layout
+    elif pathname == "/about":
+        return about.layout
     # If the user tries to reach a different page, return a 404 message
     return dbc.Jumbotron(
         [
@@ -88,4 +91,5 @@ def display_page(pathname):
 
 
 if __name__ == '__main__':
+    # app.run_server()
     app.run_server(debug=True)
