@@ -51,8 +51,6 @@ sidebar = html.Div(
 
 content = html.Div(id="page-content", style=CONTENT_STYLE)
 
-logo = html.Div([html.Img(src=app.get_asset_url('pangea-hiv-logo.png'), style={'height': '10%', 'width': '10%'})])
-
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     sidebar,
