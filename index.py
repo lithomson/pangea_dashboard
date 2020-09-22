@@ -4,7 +4,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from app import app
-from apps import sampling_numbers, data_distributions, sampling_period, about
+from pangea import sampling_numbers, sampling_period, about
 
 # the style arguments for the sidebar. We use position:fixed and a fixed width
 SIDEBAR_STYLE = {
@@ -39,7 +39,6 @@ sidebar = html.Div(
             [
                 dbc.NavLink("Home", href="/", id="home-link"),
                 dbc.NavLink("Sampling Numbers", href="/sampling-numbers", id="sampling-numbers-link"),
-                dbc.NavLink("Data Distributions", href="/data-distributions", id="data-distributions-link"),
                 dbc.NavLink("Sampling Period", href="/sampling-period", id="sampling-period-link"),
                 dbc.NavLink("About", href="/about", id="about-link"),
             ],
@@ -74,8 +73,6 @@ def display_page(pathname):
         return index_page
     elif pathname == "/sampling-numbers":
         return sampling_numbers.layout
-    elif pathname == "/data-distributions":
-        return data_distributions.layout
     elif pathname == "/sampling-period":
         return sampling_period.layout
     elif pathname == "/about":
